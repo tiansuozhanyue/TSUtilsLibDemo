@@ -1,18 +1,11 @@
-package com.example.tsutilslib
+package com.example.tslibrary.widget
 
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
-import android.os.Build
-import android.os.Handler
-import android.support.annotation.RequiresApi
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView

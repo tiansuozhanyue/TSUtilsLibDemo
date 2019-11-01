@@ -6,7 +6,7 @@
     android:background="#fff000"
     tools:context=".MainActivity">
 
-    <com.example.tsutilslib.VerticalScrollTestxView
+    <com.example.tslibrary.widget.VerticalScrollTestxView
         android:id="@+id/scrollTestxView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
