@@ -86,7 +86,7 @@ class VerticalScrollTestxView constructor(context: Context, attrs: AttributeSet?
 
                 index++
             }
-        }, time, time)
+        }, 0, time)
 
     }
 
