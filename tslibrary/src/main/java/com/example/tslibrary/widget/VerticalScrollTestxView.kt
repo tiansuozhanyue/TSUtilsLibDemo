@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.LinearLayout
@@ -99,6 +100,8 @@ class VerticalScrollTestxView constructor(context: Context, attrs: AttributeSet?
         var textView = TextView(context)
         textView!!.gravity = Gravity.CENTER_VERTICAL
         textView!!.text = info
+        textView!!.setLines(1)
+        textView!!.ellipsize = TextUtils.TruncateAt.END
         textView!!.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height)
         return textView
     }

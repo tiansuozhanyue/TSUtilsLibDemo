@@ -1,4 +1,4 @@
-package com.example.tslibrary.widget.util;
+package com.example.tslibrary.util;
 
 import android.content.Context;
 import android.view.Gravity;
