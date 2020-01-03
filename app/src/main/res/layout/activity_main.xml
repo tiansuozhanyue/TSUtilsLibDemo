@@ -6,10 +6,17 @@
     android:background="#fff000"
     tools:context=".MainActivity">
 
-    <com.example.tslibrary.widget.VerticalScrollTestxView
-        android:id="@+id/scrollTestxView"
+<!--    <com.example.tslibrary.widget.VerticalScrollTestxView-->
+<!--        android:id="@+id/scrollTestxView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:background="#ffffff"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+    <com.example.tslibrary.widget.SelfAdaptionGridView
+        android:id="@+id/selfAdaptionGridView"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:background="#ffffff"
         tools:ignore="MissingConstraints" />
 

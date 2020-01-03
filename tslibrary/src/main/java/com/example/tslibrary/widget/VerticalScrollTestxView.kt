@@ -15,7 +15,7 @@ import java.util.*
 /**
  * 作者： HeroCat
  * 时间：2019/10/31/031
- * 描述：
+ * 描述：竖直方向自滑动TextView
  */
 class VerticalScrollTestxView constructor(context: Context, attrs: AttributeSet? = null) : ScrollView(context, attrs) {
 
