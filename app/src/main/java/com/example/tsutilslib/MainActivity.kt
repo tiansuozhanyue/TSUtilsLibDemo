@@ -13,25 +13,15 @@ class MainActivity : AppCompatActivity(), SelfAdaptionGridView.CheckListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//
-//        var scrollTestxView = findViewById<VerticalScrollTestxView>(R.id.scrollTestxView)
-//
-//        var datas = ArrayList<String>()
-//        datas.add("床前明月光")
-//        datas.add("疑是地上霜")
-//        datas.add("举头望明月")
-//        datas.add("低头思故乡")
-//
-//        scrollTestxView.setData(this, datas, 3000)
-
 
         var selfAdaptionGridView = findViewById<SelfAdaptionGridView>(R.id.selfAdaptionGridView)
         var datas = ArrayList<String>()
-        datas.add("床前明月光")
-        datas.add("疑是地上霜")
-        datas.add("举头望")
-        datas.add("举头")
-        datas.add("低头思故乡")
+        datas.add("技术好")
+        datas.add("声音甜美")
+        datas.add("人长得漂亮")
+        datas.add("长腿")
+        datas.add("打酱油的")
+        datas.add("骗子")
         selfAdaptionGridView.setDatas(datas, this)
 
     }

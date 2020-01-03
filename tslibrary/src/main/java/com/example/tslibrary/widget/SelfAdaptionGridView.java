@@ -4,10 +4,13 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.tslibrary.R;
 import com.example.tslibrary.util.DensityUtil;
@@ -36,50 +39,44 @@ public class SelfAdaptionGridView extends LinearLayout {
     }
 
     private void initView(Context context) {
-
-        //垂直添加
         setOrientation(VERTICAL);
-
         this.mContext = context;
-
     }
 
     public void setDatas(final List<String> datas, final CheckListener listener) {
+
+
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int W = dm.widthPixels - DensityUtil.dip2px(mContext, 32);
 
         final List<String> checkDatas = new ArrayList<>();
 
         if (datas == null || datas.size() == 0)
             return;
 
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        int W = dm.widthPixels;
-
         for (int i = 0; i < datas.size(); i++) {
 
-            if (li == null) {
-                li = new LinearLayout(mContext);
-                li.setGravity(HORIZONTAL);
-            }
+            if (li == null)
+                li = newLayout();
 
             final String info = datas.get(i);
             final CheckBox textView = new CheckBox(mContext);
-            LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            lp.setMargins(DensityUtil.dip2px(mContext, 10), DensityUtil.dip2px(mContext, 10), 0, 0);
+            LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, DensityUtil.dip2px(mContext, 25));
             textView.setPadding(DensityUtil.dip2px(mContext, 12), DensityUtil.dip2px(mContext, 3), DensityUtil.dip2px(mContext, 12), DensityUtil.dip2px(mContext, 3));
             textView.setBackgroundResource(R.drawable.radion_bg);
             textView.setButtonDrawable(null);
             textView.setLayoutParams(lp);
-            textView.setTextColor(mContext.getResources().getColor(R.color.color_black));
+            textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
             textView.setText(info);
             textView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
                         checkDatas.add(info);
-                        textView.setTextColor(mContext.getResources().getColor(R.color.color_white));
+                        textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_white));
                     } else {
                         checkDatas.remove(info);
-                        textView.setTextColor(mContext.getResources().getColor(R.color.color_black));
+                        textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
                     }
 
                     if (listener != null)
@@ -91,13 +88,18 @@ public class SelfAdaptionGridView extends LinearLayout {
             textView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             int popupWidth = textView.getMeasuredWidth();
 
-            widthAdd = widthAdd + popupWidth + DensityUtil.dip2px(mContext, 10);
-
-            if (widthAdd > W) {
+            if (widthAdd + popupWidth + DensityUtil.dip2px(mContext, 10) > W) {
                 addView(li);
-                li = new LinearLayout(mContext);
-                li.setGravity(HORIZONTAL);
-                widthAdd = popupWidth + DensityUtil.dip2px(mContext, 10);
+                li = newLayout();
+                widthAdd = popupWidth;
+            }
+
+            if (li.getChildCount() == 0) {
+                widthAdd = popupWidth;
+            } else {
+                lp.setMargins(DensityUtil.dip2px(mContext, 10), 0, 0, 0);
+                textView.setLayoutParams(lp);
+                widthAdd = widthAdd + popupWidth + DensityUtil.dip2px(mContext, 10);
             }
 
             li.addView(textView);
@@ -107,6 +109,20 @@ public class SelfAdaptionGridView extends LinearLayout {
 
         }
 
+    }
+
+    private LinearLayout newLayout() {
+        LayoutParams lp1 = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, DensityUtil.dip2px(mContext, 25));
+        lp1.setMargins(0, DensityUtil.dip2px(mContext, 10), 0, 0);
+        LinearLayout li = new LinearLayout(mContext);
+        li.setLayoutParams(lp1);
+        li.setGravity(HORIZONTAL);
+        return li;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     public interface CheckListener {
