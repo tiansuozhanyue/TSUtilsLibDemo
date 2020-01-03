@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 
 import com.example.tslibrary.R;
 import com.example.tslibrary.util.DensityUtil;
