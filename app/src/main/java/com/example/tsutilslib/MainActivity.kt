@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), SelfAdaptionGridView.CheckListener {
         datas.add("长腿")
         datas.add("打酱油的")
         datas.add("骗子")
-        selfAdaptionGridView.setDatas(datas, this)
+        selfAdaptionGridView.setDatas(datas, null)
 
     }
 

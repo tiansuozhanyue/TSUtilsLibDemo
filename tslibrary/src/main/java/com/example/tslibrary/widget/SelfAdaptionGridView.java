@@ -66,24 +66,29 @@ public class SelfAdaptionGridView extends LinearLayout {
             textView.setBackgroundResource(R.drawable.radion_bg);
             textView.setButtonDrawable(null);
             textView.setLayoutParams(lp);
-            textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
             textView.setText(info);
-            textView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        checkDatas.add(info);
-                        textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_white));
-                    } else {
-                        checkDatas.remove(info);
-                        textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
-                    }
 
-                    if (listener != null)
+            if (listener == null) {
+                textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_white));
+                textView.setChecked(true);
+                textView.setClickable(false);
+            } else {
+                textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
+                textView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            checkDatas.add(info);
+                            textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_white));
+                        } else {
+                            checkDatas.remove(info);
+                            textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
+                        }
                         listener.checkDatas(checkDatas);
 
-                }
-            });
+                    }
+                });
+            }
 
             textView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             int popupWidth = textView.getMeasuredWidth();
