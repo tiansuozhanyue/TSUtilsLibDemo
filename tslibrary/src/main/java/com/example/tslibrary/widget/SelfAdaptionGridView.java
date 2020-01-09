@@ -28,6 +28,9 @@ public class SelfAdaptionGridView extends LinearLayout {
     private Context mContext;
     private int widthAdd;
     private LinearLayout li;
+    public static int SELECTE = 1;
+    public static int ORANGE = 2;
+    public static int GRAY = 3;
 
     public SelfAdaptionGridView(Context context) {
         super(context, null);
@@ -43,7 +46,7 @@ public class SelfAdaptionGridView extends LinearLayout {
         this.mContext = context;
     }
 
-    public void setDatas(final List<String> datas, final CheckListener listener) {
+    public void setDatas(final List<String> datas, final CheckListener listener, int flag) {
 
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
@@ -68,11 +71,7 @@ public class SelfAdaptionGridView extends LinearLayout {
             textView.setLayoutParams(lp);
             textView.setText(info);
 
-            if (listener == null) {
-                textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_white));
-                textView.setChecked(true);
-                textView.setClickable(false);
-            } else {
+            if (flag == 1) {
                 textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
                 textView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -88,7 +87,16 @@ public class SelfAdaptionGridView extends LinearLayout {
 
                     }
                 });
+            } else if (flag == 2) {
+                textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_white));
+                textView.setChecked(true);
+                textView.setClickable(false);
+            } else {
+                textView.setTextColor(mContext.getResources().getColor(R.color.color_lib_black));
+                textView.setChecked(false);
+                textView.setClickable(false);
             }
+
 
             textView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             int popupWidth = textView.getMeasuredWidth();
